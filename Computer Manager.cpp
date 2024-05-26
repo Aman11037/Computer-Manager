@@ -90,7 +90,7 @@ public:
 			return;
 		}
 		displayInOrder(current->left);
-		cout << current->name << endl;
+		cout << current->name << "\n" << endl;
 		displayInOrder(current->right);
 	}
 
@@ -99,7 +99,7 @@ public:
 			return;
 		}
 		displayPostOrder(current->right);
-		cout << current->name << endl;
+		cout << current->name << "\n" << endl;
 		displayPostOrder(current->left);
 	}
 
@@ -541,6 +541,13 @@ int main()
 		case 1:
 			while (true) {
 				cout << "Software Manager\n" << endl;
+				cout << "Installed Software\n" << endl;
+				if (reverse == true) {
+					softwareManager.displayInOrder(softwareManager.getRoot());
+				}
+				else {
+					softwareManager.displayPostOrder(softwareManager.getRoot());
+				}
 				cout << "1. Install Software\n2. Uninstall Software\n3. Search for Installed Software.\n4. Change Sorting Order\n0. Back\n" << endl;
 
 				choice = choiceExceptionHandling();
@@ -582,19 +589,16 @@ int main()
 					}
 					break;
 				case 4:
-					cout << "1. Ascending Order\n2. Descending Order\n" << endl;
-
+					cout << "1. Keep Current Order\n2. Reverse Current Order\n" << endl;
 					choice = choiceExceptionHandling();
 					cin.ignore();
 					cout << endl;
 					cout << "Installed Software\n" << endl;
 					if (choice == 1) {
-						softwareManager.displayInOrder(softwareManager.getRoot());
-						cout << endl;
+						reverse = false;
 					}
 					else if (choice == 2) {
-						softwareManager.displayPostOrder(softwareManager.getRoot());
-						cout << endl;
+						reverse = true;
 					}
 					else {
 						cout << "Invalid Choice.\n" << endl;
@@ -610,6 +614,7 @@ int main()
 			}
 			break;
 		case 2:
+			reverse = false;
 			while (true) {
 				cout << "Task Manager\n" << endl;
 				cout << left << setw(25) << "Name" << left << setw(17) << "Status" << left << setw(17) << "PID" << left << setw(15) << "Memory Usage(MB)" << "\n" << endl;
