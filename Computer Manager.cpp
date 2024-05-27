@@ -561,6 +561,10 @@ int main()
 					cout << "Enter Name: ";
 					getline(cin, name);
 					cout << endl;
+					if (name.empty()) {
+						cout << "Software name cannot be blank.\n" << endl;
+						break;
+					}
 					PID = processIDExceptionHandling();
 					cout << endl;
 					memUsage = memUsageExceptionHandling();
